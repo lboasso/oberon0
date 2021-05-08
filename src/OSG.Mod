@@ -171,7 +171,13 @@ MODULE OSG; (* NW 19.12.94 / 20.10.07 / 26.10.2013*)
 
   PROCEDURE MakeItem*(VAR x: Item; y: Object; curlev: LONGINT);
   BEGIN x.mode := y.class; x.type := y.type; x.a := y.val; x.r := y.lev;
+(* Bug fix:
+   NW's original code here was
     IF y.class = Par THEN x.b := 0 END ;
+   For a VAR parameter, this leaves x.r undefined. Since this is a Par,
+   the source of the register should always be SP.
+*)
+    IF y.class = Par THEN x.r := SP; x.b := 0 END ;
     IF (y.lev > 0) & (y.lev # curlev) & (y.class # Const) THEN OSS.Mark("level error") END
   END MakeItem;
 

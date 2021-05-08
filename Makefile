@@ -10,6 +10,9 @@ build:
 fractions: build
 	java -cp $(OBERON_BIN):out OSP examples/Fractions.Mod
 
+incr: build
+	java -cp $(OBERON_BIN):out OSP examples/Incr.Mod
+
 magicSquares: build
 	java -cp $(OBERON_BIN):out OSP examples/MagicSquares.Mod
 
