@@ -113,7 +113,7 @@ MODULE OSG; (* NW 19.12.94 / 20.10.07 / 26.10.2013*)
       IF x.mode = Var THEN
         IF x.r > 0 THEN (*local*) Put2(Ldw, RH, SP, x.a) ELSE Put2(Ldw, RH, SB, x.a) END ;
         x.r := RH; incR
-      ELSIF x.mode = Par THEN Put2(Ldw, RH, x.r, x.a); Put2(Ldw, RH, RH, 0); x.r := RH; incR
+      ELSIF x.mode = Par THEN Put2(Ldw, RH, SP, x.a); Put2(Ldw, RH, RH, x.b); x.r := RH; incR
       ELSIF x.mode = Const THEN
         IF (x.a >= 10000H) OR (x.a < -10000H) THEN OSS.Mark("const too large") END ;
         Put1(Mov, RH, 0, x.a); x.r := RH; incR
