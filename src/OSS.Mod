@@ -147,12 +147,13 @@ MODULE OSS; (* NW 19.9.93 / 17.11.94 / 1.11.2013*)
   END Get;
 
   PROCEDURE Init*(path: ARRAY OF CHAR);
-  BEGIN error := FALSE; errpos := 0; pos := 0; EOF := FALSE;
+  BEGIN error := FALSE; errpos := -1; pos := 0; EOF := FALSE;
     file := Files.Open(path);
     IF file # NIL THEN
       read
     ELSE
      error := TRUE;
+     EOF := TRUE;
      Mark("file not found")
     END
   END Init;
